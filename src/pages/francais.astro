@@ -1,0 +1,196 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+
+const chapters = [
+  {
+    num: "1",
+    title: "Grammaire et conjugaison",
+    content: [
+      {
+        type: "text",
+        heading: "Les fonctions grammaticales",
+        body: "Sujet, verbe, complément d'objet direct (COD), complément d'objet indirect (COI), complément circonstanciel (CC). Identifier la fonction d'un mot permet de l'orthographier correctement.",
+      },
+      {
+        type: "list",
+        heading: "Temps à maîtriser",
+        items: [
+          "Présent, imparfait, passé simple : narration",
+          "Futur simple et conditionnel présent",
+          "Subjonctif présent : doute, souhait, nécessité",
+          "Participe passé avec être et avoir",
+        ],
+      },
+      {
+        type: "callout", variant: "tip", title: "Accord du participe passé",
+        body: "Avec avoir : le PP s'accorde avec le COD placé AVANT le verbe. Avec être : le PP s'accorde avec le sujet.",
+      },
+    ],
+  },
+  {
+    num: "2",
+    title: "Orthographe lexicale et grammaticale",
+    content: [
+      {
+        type: "text",
+        heading: "Homophones grammaticaux courants",
+        body: "Ces mots se prononcent de la même façon mais n'ont pas la même nature ni le même sens.",
+      },
+      {
+        type: "formula",
+        lines: [
+          "a / à : a = avoir (il avait)  |  à = préposition",
+          "on / ont : ont = avoir (ils avaient)",
+          "ce / se : ce = déterminant  |  se = pronom réfléchi",
+          "ou / où : ou = choix  |  où = lieu/temps",
+          "leur / leurs : leurs s'accorde si plusieurs possesseurs",
+        ],
+      },
+      { type: "callout", variant: "exam", title: "Dictée au brevet", body: "La dictée (ou exercice d'orthographe) compte dans l'épreuve de français. Entraîne-toi à relire en cherchant les accords (GN, participe)." },
+    ],
+  },
+  {
+    num: "3",
+    title: "Lecture et compréhension de texte",
+    content: [
+      {
+        type: "text",
+        heading: "Méthode de lecture analytique",
+        body: "Lire le texte en entier, repérer le type (narratif, descriptif, argumentatif, poétique), identifier le thème et la thèse. Annoter au crayon les procédés stylistiques.",
+      },
+      {
+        type: "list",
+        heading: "Figures de style incontournables",
+        items: [
+          "Métaphore : comparaison sans outil comparatif",
+          "Comparaison : « comme », « tel »",
+          "Hyperbole : exagération volontaire",
+          "Anaphore : répétition en début de phrase",
+          "Personnification : donner des traits humains à un objet/animal",
+          "Antithèse : opposition de deux idées",
+        ],
+      },
+      { type: "callout", variant: "info", title: "Pour répondre aux questions", body: "Cite toujours le texte entre guillemets pour appuyer ton analyse. Structure ta réponse : observation → interprétation → effet produit." },
+    ],
+  },
+  {
+    num: "4",
+    title: "Rédaction et expression écrite",
+    content: [
+      {
+        type: "text",
+        heading: "Structure d'un texte narratif",
+        body: "Un récit bien construit respecte une structure : situation initiale → élément perturbateur → péripéties → élément de résolution → situation finale.",
+      },
+      {
+        type: "text",
+        heading: "Rédiger un texte argumentatif",
+        body: "Thèse → Arguments → Exemples → Concession → Réfutation → Conclusion. Utilise des connecteurs logiques pour lier les idées.",
+      },
+      {
+        type: "formula",
+        lines: [
+          "Connecteurs cause : car, parce que, puisque, en effet",
+          "Connecteurs conséquence : donc, ainsi, c'est pourquoi",
+          "Connecteurs opposition : mais, or, cependant, néanmoins",
+          "Connecteurs addition : de plus, en outre, par ailleurs",
+        ],
+      },
+      { type: "callout", variant: "tip", title: "10 dernières minutes", body: "Relis ta copie : vérifier la cohérence, corriger les accords, s'assurer que chaque paragraphe a bien un sens." },
+    ],
+  },
+  {
+    num: "5",
+    title: "Étude de la langue — Vocabulaire",
+    content: [
+      {
+        type: "text",
+        heading: "Formation des mots",
+        body: "Les mots se forment par préfixation, suffixation ou composition. Comprendre les racines latines et grecques aide à deviner le sens d'un mot inconnu.",
+      },
+      {
+        type: "formula",
+        lines: [
+          "pré- = avant  |  re- = encore  |  in-/im- = négation",
+          "-tion, -ment : nominalisation d'un verbe",
+          "bio = vie  |  graph = écriture  |  phon = son",
+          "tele = loin  |  poly = plusieurs  |  mono = seul",
+        ],
+      },
+      { type: "callout", variant: "warn", title: "Champ lexical vs sémantique", body: "Champ lexical : ensemble de mots liés à un même thème. Champ sémantique : ensemble des sens d'un même mot (polysémie)." },
+    ],
+  },
+];
+---
+
+<Layout title="Français">
+  <div class="subject-hero" style="background: linear-gradient(135deg, #cffafe, #f0fdfa);">
+    <div class="subject-hero-inner">
+      <div>
+        <h1 style="color:var(--color-fr);">Français</h1>
+        <p>Grammaire, orthographe, lecture analytique et rédaction. Méthodes et rappels de cours pour réussir l'épreuve écrite et la dictée.</p>
+        <div class="tags" style="margin-top:12px;">
+          {["Grammaire","Orthographe","Lecture","Rédaction","Vocabulaire"].map(t => (
+            <span class="tag" style="background:var(--color-fr-light);color:var(--color-fr);">{t}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-container">
+    <div class="callout callout-info" style="margin-bottom:32px;">
+      <div class="callout-icon"><Icon name="clipboard" size={18} /></div>
+      <div class="callout-body">
+        <strong>Format de l'épreuve</strong>
+        L'épreuve de français dure <strong>3h</strong>. Elle comprend : questions sur texte(s), réécriture, dictée et rédaction. Lis toutes les consignes avant de commencer.
+      </div>
+    </div>
+
+    <div class="chapters">
+      {chapters.map(ch => (
+        <div class="chapter-card">
+          <div class="chapter-header">
+            <div class="chapter-num" style="background:var(--color-fr-light);color:var(--color-fr);">{ch.num}</div>
+            <div class="chapter-title">{ch.title}</div>
+          </div>
+          <div class="chapter-body">
+            {ch.content.map(block => (
+              <div class="notion-block">
+                {block.type === "text" && (
+                  <>
+                    <h3><span class="notion-bullet"><Icon name="dot" size={12} /></span> {block.heading}</h3>
+                    <p>{block.body}</p>
+                  </>
+                )}
+                {block.type === "list" && (
+                  <>
+                    <h3><span class="notion-bullet"><Icon name="dot" size={12} /></span> {block.heading}</h3>
+                    <ul>{block.items?.map(i => <li>{i}</li>)}</ul>
+                  </>
+                )}
+                {block.type === "formula" && (
+                  <div class="formula-box">
+                    {block.lines?.map(l => <div>{l}</div>)}
+                  </div>
+                )}
+                {block.type === "callout" && (
+                  <div class={`callout callout-${block.variant}`}>
+                    <div class="callout-icon">
+                      {block.variant === "tip" ? <Icon name="check" size={18} /> : block.variant === "warn" ? <Icon name="warn" size={18} /> : block.variant === "info" ? <Icon name="info" size={18} /> : <Icon name="target" size={18} />}
+                    </div>
+                    <div class="callout-body">
+                      <strong>{block.title}</strong>
+                      {block.body}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout>

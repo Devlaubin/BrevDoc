@@ -1,0 +1,187 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+
+const chapters = [
+  {
+    num: "1",
+    title: "SVT — Le vivant et son évolution",
+    content: [
+      {
+        type: "text",
+        heading: "La cellule, unité du vivant",
+        body: "Tout être vivant est composé de cellules. Une cellule contient un noyau (ADN), un cytoplasme et une membrane. Les cellules végétales possèdent en plus une paroi et des chloroplastes.",
+      },
+      {
+        type: "formula",
+        lines: [
+          "ADN → ARNm → Protéine (transcription / traduction)",
+          "Chromosomes humains : 23 paires = 46 chromosomes",
+          "Mitose : division cellulaire (cellules identiques)",
+          "Méiose : formation des gamètes (23 chromosomes chacun)",
+        ],
+      },
+      { type: "callout", variant: "tip", title: "Hérédité", body: "Un gène est une portion d'ADN qui code pour une protéine. Les allèles sont les différentes formes d'un gène. Dominant ≠ récessif." },
+    ],
+  },
+  {
+    num: "2",
+    title: "SVT — Corps humain et santé",
+    content: [
+      {
+        type: "text",
+        heading: "Le système nerveux",
+        body: "Le système nerveux central (cerveau + moelle épinière) coordonne les réponses de l'organisme. Les neurones transmettent l'influx nerveux grâce à des synapses chimiques.",
+      },
+      {
+        type: "list",
+        heading: "Points clés santé",
+        items: [
+          "Immunité : défenses spécifiques (anticorps) et non spécifiques (phagocytose)",
+          "Vaccination : introduit un antigène pour préparer le système immunitaire",
+          "Reproduction : fécondation = gamète mâle + gamète femelle",
+          "Contraception : méthodes hormonales, mécaniques, d'urgence",
+          "Addictions : modifications du système dopaminergique",
+        ],
+      },
+      { type: "callout", variant: "exam", title: "Exercice type", body: "On peut te demander de schématiser un arc réflexe ou d'expliquer la réponse immunitaire. Savoir légender proprement un schéma." },
+    ],
+  },
+  {
+    num: "3",
+    title: "SVT — Écologie et environnement",
+    content: [
+      {
+        type: "text",
+        heading: "Les écosystèmes",
+        body: "Un écosystème est l'ensemble des êtres vivants (biocénose) et de leur milieu (biotope). Les relations entre espèces : prédation, parasitisme, mutualisme, compétition.",
+      },
+      {
+        type: "formula",
+        lines: [
+          "Chaîne alimentaire : producteur → consommateur 1 → consommateur 2",
+          "Photosynthèse : CO₂ + H₂O + lumière → glucose + O₂",
+          "Respiration : glucose + O₂ → CO₂ + H₂O + énergie",
+          "Effet de serre : CO₂, CH₄, N₂O retiennent la chaleur",
+        ],
+      },
+      { type: "callout", variant: "warn", title: "Changement climatique", body: "L'augmentation des GES (gaz à effet de serre) due aux activités humaines amplifie le réchauffement climatique. Connaître les conséquences (montée des eaux, événements extrêmes)." },
+    ],
+  },
+  {
+    num: "4",
+    title: "Physique — Mécanique et forces",
+    content: [
+      {
+        type: "text",
+        heading: "Les forces",
+        body: "Une force est caractérisée par son point d'application, sa direction, son sens et son intensité (en Newtons). Poids ≠ masse : le poids dépend de la pesanteur locale.",
+      },
+      {
+        type: "formula",
+        lines: [
+          "Poids : P = m × g  (g ≈ 9,8 N/kg sur Terre)",
+          "Vitesse : v = d / t",
+          "Principe d'inertie : objet en MRU si forces équilibrées",
+          "Énergie cinétique : Ec = ½mv²",
+          "Énergie potentielle : Ep = mgh",
+        ],
+      },
+      { type: "callout", variant: "tip", title: "Unités SI", body: "Masse en kg, longueur en m, temps en s, force en N, énergie en J, puissance en W. Toujours convertir avant de calculer." },
+    ],
+  },
+  {
+    num: "5",
+    title: "Physique-Chimie — Électricité et lumière",
+    content: [
+      {
+        type: "text",
+        heading: "Circuits électriques",
+        body: "Dans un circuit série, l'intensité est la même partout. La tension se partage. Dans un circuit parallèle, la tension est la même dans chaque branche. L'intensité se partage.",
+      },
+      {
+        type: "formula",
+        lines: [
+          "Loi d'Ohm : U = R × I",
+          "Puissance : P = U × I = R × I²",
+          "Énergie : E = P × t",
+          "Loi de Snell-Descartes : n₁ sin θ₁ = n₂ sin θ₂",
+          "Lumière blanche = spectre de couleurs (rouge → violet)",
+        ],
+      },
+      { type: "callout", variant: "info", title: "Chimie des atomes", body: "Atome = noyau (protons + neutrons) + électrons. Molécule = assemblage d'atomes. Réaction chimique : les atomes se réarrangent, la masse totale est conservée (loi de conservation de la masse)." },
+    ],
+  },
+];
+---
+
+<Layout title="Sciences">
+  <div class="subject-hero" style="background: linear-gradient(135deg, #ffedd5, #fff7ed);">
+    <div class="subject-hero-inner">
+      <div>
+        <h1 style="color:var(--color-sci);">Sciences (SVT & Physique-Chimie)</h1>
+        <p>Biologie cellulaire, corps humain, écologie, mécanique et électricité. Les notions fondamentales avec formules et schémas pour l'épreuve.</p>
+        <div class="tags" style="margin-top:12px;">
+          {["SVT","Physique","Chimie","Écologie","Santé"].map(t => (
+            <span class="tag" style="background:var(--color-sci-light);color:var(--color-sci);">{t}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-container">
+    <div class="callout callout-info" style="margin-bottom:32px;">
+      <div class="callout-icon"><Icon name="clipboard" size={18} /></div>
+      <div class="callout-body">
+        <strong>Format de l'épreuve</strong>
+        L'épreuve de sciences dure <strong>1h</strong>. Elle comporte des exercices de SVT et de Physique-Chimie. La calculatrice est autorisée pour la partie physique.
+      </div>
+    </div>
+
+    <div class="chapters">
+      {chapters.map(ch => (
+        <div class="chapter-card">
+          <div class="chapter-header">
+            <div class="chapter-num" style="background:var(--color-sci-light);color:var(--color-sci);">{ch.num}</div>
+            <div class="chapter-title">{ch.title}</div>
+          </div>
+          <div class="chapter-body">
+            {ch.content.map(block => (
+              <div class="notion-block">
+                {block.type === "text" && (
+                  <>
+                    <h3><span class="notion-bullet"><Icon name="dot" size={12} /></span> {block.heading}</h3>
+                    <p>{block.body}</p>
+                  </>
+                )}
+                {block.type === "list" && (
+                  <>
+                    <h3><span class="notion-bullet"><Icon name="dot" size={12} /></span> {block.heading}</h3>
+                    <ul>{block.items?.map(i => <li>{i}</li>)}</ul>
+                  </>
+                )}
+                {block.type === "formula" && (
+                  <div class="formula-box">
+                    {block.lines?.map(l => <div>{l}</div>)}
+                  </div>
+                )}
+                {block.type === "callout" && (
+                  <div class={`callout callout-${block.variant}`}>
+                    <div class="callout-icon">
+                      {block.variant === "tip" ? <Icon name="check" size={18} /> : block.variant === "warn" ? <Icon name="warn" size={18} /> : block.variant === "info" ? <Icon name="info" size={18} /> : <Icon name="target" size={18} />}
+                    </div>
+                    <div class="callout-body">
+                      <strong>{block.title}</strong>
+                      {block.body}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout>

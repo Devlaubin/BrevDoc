@@ -1,0 +1,191 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+
+const chapters = [
+  {
+    num: "1",
+    title: "La Première Guerre mondiale (1914-1918)",
+    content: [
+      {
+        type: "text",
+        heading: "Causes et déclenchement",
+        body: "L'assassinat de l'archiduc François-Ferdinand à Sarajevo (28 juin 1914) déclenche un mécanisme d'alliances. Les deux blocs : la Triple-Entente (France, Royaume-Uni, Russie) vs la Triple-Alliance (Allemagne, Autriche-Hongrie, Italie).",
+      },
+      {
+        type: "list",
+        heading: "Repères chronologiques",
+        items: [
+          "1914 : début du conflit, guerre de mouvement",
+          "1916 : batailles de Verdun et de la Somme — guerre de position",
+          "1917 : révolution russe, entrée en guerre des États-Unis",
+          "11 novembre 1918 : armistice",
+          "1919 : traité de Versailles",
+        ],
+      },
+      { type: "callout", variant: "exam", title: "Notion clé", body: "\"Guerre totale\" : mobilisation de toutes les ressources humaines, économiques et culturelles d'une nation. À savoir définir." },
+    ],
+  },
+  {
+    num: "2",
+    title: "La Seconde Guerre mondiale (1939-1945)",
+    content: [
+      {
+        type: "text",
+        heading: "Régimes totalitaires et montée des tensions",
+        body: "L'arrivée au pouvoir d'Hitler (1933) et de Mussolini, la crise économique des années 1930 et la politique d'apaisement des démocraties créent un contexte favorable au conflit.",
+      },
+      {
+        type: "list",
+        heading: "Points essentiels",
+        items: [
+          "1er septembre 1939 : invasion de la Pologne",
+          "Juin 1940 : défaite de la France, appel du 18 juin",
+          "Génocide juif et Shoah : 6 millions de morts",
+          "6 juin 1944 : Débarquement en Normandie",
+          "8 mai 1945 : capitulation de l'Allemagne",
+          "2 septembre 1945 : capitulation du Japon (bombes atomiques)",
+        ],
+      },
+      { type: "callout", variant: "warn", title: "À ne pas confondre", body: "Collaboration (régime de Vichy, Pétain) ≠ Résistance (de Gaulle, maquis). Savoir expliquer les deux attitudes de la France." },
+    ],
+  },
+  {
+    num: "3",
+    title: "La construction européenne et la mondialisation",
+    content: [
+      {
+        type: "text",
+        heading: "La construction de l'Union européenne",
+        body: "Née des cendres de la WWII, l'idée européenne vise à garantir la paix. De la CECA (1951) au traité de Maastricht (1992) qui crée l'UE, jusqu'à l'euro (2002).",
+      },
+      {
+        type: "formula",
+        lines: [
+          "1951 : CECA (charbon et acier) — 6 pays fondateurs",
+          "1957 : Traité de Rome — CEE",
+          "1992 : Traité de Maastricht — Union Européenne",
+          "2002 : Introduction de l'euro",
+          "Aujourd'hui : 27 États membres",
+        ],
+      },
+      { type: "callout", variant: "info", title: "Mondialisation", body: "La mondialisation = intégration croissante des économies, des flux de personnes, d'informations et de marchandises à l'échelle mondiale. FMI, GATT/OMC sont des acteurs clés." },
+    ],
+  },
+  {
+    num: "4",
+    title: "Géographie — Territoires et inégalités",
+    content: [
+      {
+        type: "text",
+        heading: "Les grandes puissances mondiales",
+        body: "Les États-Unis restent la première puissance mondiale (économique, militaire, culturelle). La Chine est en forte progression. L'UE est un acteur économique majeur.",
+      },
+      {
+        type: "list",
+        heading: "Notions de géographie à maîtriser",
+        items: [
+          "Nord / Sud : inégalités de développement (IDH)",
+          "Mégapoles : villes de plus de 10 millions d'habitants",
+          "Littoralisation : concentration des activités sur les côtes",
+          "FTN (firmes transnationales) : acteurs de la mondialisation",
+          "Flux migratoires : migrations économiques et réfugiés",
+        ],
+      },
+      { type: "callout", variant: "tip", title: "Croquis et schémas", body: "Entraîne-toi à réaliser des croquis simples (planisphère, carte de France). Légender proprement et utiliser une légende structurée." },
+    ],
+  },
+  {
+    num: "5",
+    title: "Éducation Morale et Civique (EMC)",
+    content: [
+      {
+        type: "text",
+        heading: "La démocratie et les institutions françaises",
+        body: "La Ve République (1958) : le Président de la République élu au suffrage universel direct depuis 1962. Les pouvoirs exécutif (Président, Premier ministre), législatif (Assemblée nationale, Sénat) et judiciaire.",
+      },
+      {
+        type: "formula",
+        lines: [
+          "Séparation des pouvoirs : exécutif / législatif / judiciaire",
+          "Droits fondamentaux : DDHC (1789), DUDH (1948)",
+          "Citoyenneté : droits ET devoirs (impôt, vote, défense nationale)",
+          "Laïcité : séparation Église-État (loi 1905)",
+        ],
+      },
+      { type: "callout", variant: "exam", title: "Sujet de réflexion", body: "On peut te demander de rédiger un texte argumenté sur la démocratie, la citoyenneté ou les droits de l'homme. Entraîne-toi avec des exemples concrets." },
+    ],
+  },
+];
+---
+
+<Layout title="Histoire-Géographie">
+  <div class="subject-hero" style="background: linear-gradient(135deg, #dcfce7, #f0fdf4);">
+    <div class="subject-hero-inner">
+      <div>
+        <h1 style="color:var(--color-hg);">Histoire-Géographie & EMC</h1>
+        <p>Repères chronologiques, notions géographiques clés, institutions républicaines. Cours structurés pour maîtriser tout le programme de 3e.</p>
+        <div class="tags" style="margin-top:12px;">
+          {["XXe siècle","Guerres mondiales","UE","Mondialisation","EMC"].map(t => (
+            <span class="tag" style="background:var(--color-hg-light);color:var(--color-hg);">{t}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-container">
+    <div class="callout callout-info" style="margin-bottom:32px;">
+      <div class="callout-icon"><Icon name="clipboard" size={18} /></div>
+      <div class="callout-body">
+        <strong>Format de l'épreuve</strong>
+        L'épreuve dure <strong>2h</strong>. Elle comporte : des questions, une analyse de documents (histoire ou géo) et un exercice de raisonnement géographique ou de réflexion citoyenne.
+      </div>
+    </div>
+
+    <div class="chapters">
+      {chapters.map(ch => (
+        <div class="chapter-card">
+          <div class="chapter-header">
+            <div class="chapter-num" style="background:var(--color-hg-light);color:var(--color-hg);">{ch.num}</div>
+            <div class="chapter-title">{ch.title}</div>
+          </div>
+          <div class="chapter-body">
+            {ch.content.map(block => (
+              <div class="notion-block">
+                {block.type === "text" && (
+                  <>
+                    <h3><span class="notion-bullet"><Icon name="dot" size={12} /></span> {block.heading}</h3>
+                    <p>{block.body}</p>
+                  </>
+                )}
+                {block.type === "list" && (
+                  <>
+                    <h3><span class="notion-bullet"><Icon name="dot" size={12} /></span> {block.heading}</h3>
+                    <ul>{block.items?.map(i => <li>{i}</li>)}</ul>
+                  </>
+                )}
+                {block.type === "formula" && (
+                  <div class="formula-box">
+                    {block.lines?.map(l => <div>{l}</div>)}
+                  </div>
+                )}
+                {block.type === "callout" && (
+                  <div class={`callout callout-${block.variant}`}>
+                    <div class="callout-icon">
+                      {block.variant === "tip" ? <Icon name="check" size={18} /> : block.variant === "warn" ? <Icon name="warn" size={18} /> : block.variant === "info" ? <Icon name="info" size={18} /> : <Icon name="target" size={18} />}
+                    </div>
+                    <div class="callout-body">
+                      <strong>{block.title}</strong>
+                      {block.body}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout>

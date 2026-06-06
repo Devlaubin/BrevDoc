@@ -1,0 +1,243 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+
+const subjects = [
+  {
+    href: "/mathematiques",
+    icon: "math",
+    title: "Mathématiques",
+    desc: "Algèbre, géométrie, probabilités, statistiques. Formules essentielles et méthodes de résolution.",
+    color: "var(--color-math)",
+    bg: "var(--color-math-light)",
+    topics: ["Calcul", "Géométrie", "Fonctions", "Probabilités"],
+  },
+  {
+    href: "/francais",
+    icon: "book",
+    title: "Français",
+    desc: "Compréhension de texte, grammaire, orthographe, rédaction et expression écrite.",
+    color: "var(--color-fr)",
+    bg: "var(--color-fr-light)",
+    topics: ["Grammaire", "Rédaction", "Lecture", "Dictée"],
+  },
+  {
+    href: "/histoire-geo",
+    icon: "globe",
+    title: "Histoire-Géographie",
+    desc: "Les grandes périodes historiques, repères géographiques et notions de géopolitique.",
+    color: "var(--color-hg)",
+    bg: "var(--color-hg-light)",
+    topics: ["XXe siècle", "Mondialisation", "Démocratie", "Territoires"],
+  },
+  {
+    href: "/sciences",
+    icon: "microscope",
+    title: "Sciences (SVT & Physique)",
+    desc: "Biologie, chimie, physique : cours synthétiques et expériences clés au programme.",
+    color: "var(--color-sci)",
+    bg: "var(--color-sci-light)",
+    topics: ["SVT", "Physique", "Chimie", "Environnement"],
+  },
+  {
+    href: "/methodologie",
+    icon: "folder",
+    title: "Méthodologie",
+    desc: "Organisation des révisions, gestion du stress, conseils pour le jour J et l'oral.",
+    color: "var(--color-meth)",
+    bg: "var(--color-meth-light)",
+    topics: ["Planning", "Fiches", "Oral", "Jour J"],
+  },
+];
+
+const timeline = [
+  { label: "Épreuve écrite", date: "26-30 Juin 2026", desc: "Français, Maths, Histoire-Géo, Sciences" },
+  { label: "Épreuve orale", date: "Juin 2026", desc: "5min Oral, 10min Questions" },
+  { label: "Coefficient", date: "Contrôle continu", desc: "40 % de la note finale en continu" },
+];
+---
+
+<Layout title="Accueil">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>Prépare ton Brevet facilement</h1>
+      <p>
+        Des cours clairs, des méthodes éprouvées et des fiches synthétiques pour réviser
+        toutes les matières du programme de 3e. Gratuit, sans inscription.
+      </p>
+      <div class="hero-actions">
+        <a href="/mathematiques" class="btn btn-primary">Explorer la documentation</a>
+        <a href="/methodologie" class="btn btn-outline">Conseils méthodologie</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-container">
+
+    <!-- Stats -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-value" style="color:var(--color-primary)">5</div>
+        <div class="stat-label">Matières couvertes</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" style="color:var(--color-success)">30+</div>
+        <div class="stat-label">Chapitres de cours</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" style="color:var(--color-accent)">100%</div>
+        <div class="stat-label">Gratuit</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" style="color:var(--color-secondary)">3e</div>
+        <div class="stat-label">Niveau ciblé</div>
+      </div>
+    </div>
+
+    <!-- Subjects -->
+    <div style="margin-bottom: 48px;">
+      <h2 class="section-title">Toutes les matières</h2>
+      <p class="section-subtitle">Choisir une matière pour accéder aux cours et fiches.</p>
+      <div class="cards-grid">
+        {subjects.map(s => (
+          <a href={s.href} class="subject-card" style="text-decoration:none;">
+            <div class="card-icon" style={`background:${s.bg};`}><Icon name={s.icon} size={28} /></div>
+            <div class="card-title">{s.title}</div>
+            <div class="card-desc">{s.desc}</div>
+            <div class="tags">
+              {s.topics.map(t => (
+                <span class="tag" style={`background:${s.bg}; color:${s.color};`}>{t}</span>
+              ))}
+            </div>
+            <span class="card-link" style={`color:${s.color};`}>
+              Voir les cours
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Timeline examen -->
+    <div style="margin-bottom: 48px;">
+      <h2 class="section-title">Calendrier des épreuves</h2>
+      <p class="section-subtitle">Les grandes dates à retenir pour le DNB.</p>
+      <div class="timeline">
+        {timeline.map((item, i) => (
+          <div class="timeline-item">
+            <div class="timeline-dot" style={i === 0 ? "background:var(--color-error);" : i === 1 ? "background:var(--color-warning);" : "background:var(--color-success);"}></div>
+            <div class="timeline-content">
+              <span class="timeline-date">{item.date}</span>
+              <strong class="timeline-label">{item.label}</strong>
+              <span class="timeline-desc">{item.desc}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Tip section -->
+    <div class="callout callout-tip" style="margin-bottom:0;">
+      <div class="callout-body">
+        <strong>Par où commencer ?</strong>
+        Commence par la <a href="/methodologie" style="color:inherit;text-decoration:underline;">page Méthodologie</a> pour
+        créer ton planning de révisions, puis attaque les matières où tu te sens le moins à l'aise.
+      </div>
+    </div>
+
+  </div>
+</Layout>
+
+<style>
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-left: 2px solid var(--color-border);
+    padding-left: 24px;
+    margin-left: 12px;
+  }
+  .timeline-item {
+    position: relative;
+    padding: 0 0 28px 0;
+  }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    position: absolute;
+    left: -31px;
+    top: 3px;
+    border: 2px solid white;
+    box-shadow: 0 0 0 2px var(--color-border);
+  }
+  .timeline-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .timeline-date {
+    font-size: .8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: var(--color-text-muted);
+  }
+  .timeline-label {
+    font-size: 1rem;
+    font-weight: 700;
+  }
+  .timeline-desc {
+    font-size: .88rem;
+    color: var(--color-text-muted);
+  }
+</style>
+</Layout>
+
+<style>
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-left: 2px solid var(--color-border);
+    padding-left: 24px;
+    margin-left: 12px;
+  }
+  .timeline-item {
+    position: relative;
+    padding: 0 0 28px 0;
+  }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    position: absolute;
+    left: -31px;
+    top: 3px;
+    border: 2px solid white;
+    box-shadow: 0 0 0 2px var(--color-border);
+  }
+  .timeline-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .timeline-date {
+    font-size: .8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: var(--color-text-muted);
+  }
+  .timeline-label {
+    font-size: 1rem;
+    font-weight: 700;
+  }
+  .timeline-desc {
+    font-size: .88rem;
+    color: var(--color-text-muted);
+  }
+</style>

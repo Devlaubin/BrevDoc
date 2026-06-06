@@ -1,0 +1,209 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+
+const steps = [
+  {
+    num: "1",
+    icon: "calendar",
+    title: "Créer ton planning de révisions",
+    color: "var(--color-primary)",
+    bg: "var(--color-primary-light)",
+    content: [
+      {
+        type: "text",
+        heading: "Principe du planning efficace",
+        body: "Commence ton planning 6 à 8 semaines avant l'examen. Divise ton temps en blocs de 45 minutes avec des pauses de 10 minutes. Révise chaque matière au moins 3 fois par semaine.",
+      },
+      {
+        type: "list",
+        heading: "Règles d'or",
+        items: [
+          "Identifier les chapitres à réviser par matière",
+          "Planifier du plus difficile au plus facile",
+          "Laisser des créneaux libres pour l'imprévu",
+          "Réviser le soir avant de dormir (consolidation mémorielle)",
+          "Se fixer des objectifs journaliers clairs et mesurables",
+        ],
+      },
+      { type: "callout", variant: "tip", title: "Technique Pomodoro", body: "25 min de travail concentré → 5 min de pause. Après 4 cycles, faire une pause de 20–30 min. Très efficace pour rester focus." },
+    ],
+  },
+  {
+    num: "2",
+    icon: "edit",
+    title: "Faire des fiches de révision",
+    color: "var(--color-secondary)",
+    bg: "var(--color-secondary-light)",
+    content: [
+      {
+        type: "text",
+        heading: "Comment construire une bonne fiche",
+        body: "Une fiche n'est pas une recopie du cours. C'est une synthèse personnelle. Elle doit tenir sur une page recto-verso maximum et ne contenir que l'essentiel.",
+      },
+      {
+        type: "list",
+        heading: "Structure recommandée",
+        items: [
+          "Titre + matière + date",
+          "Définitions clés (3–5 maximum)",
+          "Formules ou règles indispensables",
+          "Exemple résolu ou extrait de texte",
+          "Erreurs fréquentes à éviter",
+        ],
+      },
+      { type: "callout", variant: "info", title: "Format papier vs numérique", body: "Écrire à la main renforce la mémorisation. Mais une fiche numérique (Notion, Anki) permet de réviser partout. Les deux se complètent." },
+    ],
+  },
+  {
+    num: "3",
+    icon: "brain",
+    title: "Techniques de mémorisation",
+    color: "var(--color-math)",
+    bg: "var(--color-math-light)",
+    content: [
+      {
+        type: "text",
+        heading: "La répétition espacée",
+        body: "Révise un cours 1 jour après, puis 3 jours après, puis 1 semaine après, puis 2 semaines. Cette technique est scientifiquement prouvée pour ancrer les connaissances en mémoire long terme.",
+      },
+      {
+        type: "list",
+        heading: "Autres méthodes efficaces",
+        items: [
+          "Feynman : expliquer le cours à voix haute comme si tu l'enseignais",
+          "Mind maps : relier les notions visuellement",
+          "Flashcards (Anki) : question au recto, réponse au verso",
+          "Réciter sans regarder ses fiches",
+          "Faire des sujets corrigés (annales)",
+        ],
+      },
+      { type: "callout", variant: "tip", title: "Dormir, c'est réviser", body: "La mémoire consolide les apprentissages pendant le sommeil. 8h de sommeil avant l'examen valent plus que 2h de révision la veille à minuit." },
+    ],
+  },
+  {
+    num: "4",
+    icon: "mic",
+    title: "Préparer l'oral (SpeAk)",
+    color: "var(--color-hg)",
+    bg: "var(--color-hg-light)",
+    content: [
+      {
+        type: "text",
+        heading: "L'épreuve orale du brevet",
+        body: "L'oral du brevet, dit SpeAk, dure 15 minutes (5 min d'exposé + 10 min d'échange avec le jury). Il porte sur un projet mené en classe (EPI, parcours citoyen, etc.).",
+      },
+      {
+        type: "list",
+        heading: "Conseils pour l'exposé",
+        items: [
+          "S'entraîner à voix haute devant un miroir ou un proche",
+          "Minutez ton exposé (5 min = environ 600 mots)",
+          "Prévoir un plan en 3 parties claires",
+          "Anticiper les questions du jury",
+          "Parler lentement et clairement, regarder le jury",
+          "Ne pas lire ses notes mot à mot",
+        ],
+      },
+      { type: "callout", variant: "warn", title: "Stress à l'oral", body: "Le stress est normal. Inspire profondément avant d'entrer. Commence par une phrase d'accroche préparée à l'avance pour te lancer." },
+    ],
+  },
+  {
+    num: "5",
+    icon: "flag",
+    title: "Le jour de l'examen",
+    color: "var(--color-error)",
+    bg: "var(--color-error-light)",
+    content: [
+      {
+        type: "list",
+        heading: "La veille",
+        items: [
+          "Préparer son sac (convocation, carte d'identité, stylos)",
+          "Vérifier la calculatrice et les piles",
+          "Dormir 8h minimum — pas de révision tardive",
+          "Manger correctement (pas de repas trop lourd)",
+        ],
+      },
+      {
+        type: "list",
+        heading: "Pendant l'épreuve",
+        items: [
+          "Lire toutes les questions avant de commencer",
+          "Gérer son temps : ne pas rester bloqué sur un exercice",
+          "Répondre à tout : même une réponse partielle rapporte des points",
+          "Relire sa copie les 10 dernières minutes",
+          "Vérifier les unités et les calculs",
+        ],
+      },
+      { type: "callout", variant: "exam", title: "Présentation de la copie", body: "Soigne l'écriture et la présentation. Souligne les titres, saute des lignes entre les exercices. Un jury lit plus de 100 copies : une copie lisible est un avantage." },
+    ],
+  },
+];
+---
+
+<Layout title="Méthodologie">
+  <div class="subject-hero" style="background: linear-gradient(135deg, #fce7f3, #fdf4ff);">
+    <div class="subject-hero-inner">
+      <div>
+        <h1 style="color:var(--color-meth);">Méthodologie</h1>
+        <p>Organisation, mémorisation, gestion du stress et conseils pour le jour J. Tout ce qu'il faut savoir pour aborder le brevet dans les meilleures conditions.</p>
+        <div class="tags" style="margin-top:12px;">
+          {["Planning","Fiches","Mémorisation","Oral","Jour J"].map(t => (
+            <span class="tag" style="background:var(--color-meth-light);color:var(--color-meth);">{t}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-container">
+    <div class="callout callout-tip" style="margin-bottom:32px;">
+      <div class="callout-icon"><Icon name="check" size={18} /></div>
+      <div class="callout-body">
+        <strong>Le secret de la réussite</strong>
+        Il n'y a pas de raccourci : la régularité bat l'intensité. 30 min de révision par jour pendant 2 mois valent mieux que 10h de bourrage le week-end avant l'examen.
+      </div>
+    </div>
+
+    <div class="chapters">
+      {steps.map(step => (
+        <div class="chapter-card">
+          <div class="chapter-header">
+            <div class="chapter-num" style={`background:${step.bg};color:${step.color};`}><Icon name={step.icon} size={18} /></div>
+            <div class="chapter-title">{step.title}</div>
+          </div>
+          <div class="chapter-body">
+            {step.content.map(block => (
+              <div class="notion-block">
+                {block.type === "text" && (
+                  <>
+                    <h3><span class="notion-bullet"><Icon name="dot" size={12} /></span> {block.heading}</h3>
+                    <p>{block.body}</p>
+                  </>
+                )}
+                {block.type === "list" && (
+                  <>
+                    <h3><span class="notion-bullet"><Icon name="dot" size={12} /></span> {block.heading}</h3>
+                    <ul>{block.items?.map(i => <li>{i}</li>)}</ul>
+                  </>
+                )}
+                {block.type === "callout" && (
+                  <div class={`callout callout-${block.variant}`}>
+                    <div class="callout-icon">
+                      {block.variant === "tip" ? <Icon name="check" size={18} /> : block.variant === "warn" ? <Icon name="warn" size={18} /> : block.variant === "info" ? <Icon name="info" size={18} /> : <Icon name="target" size={18} />}
+                    </div>
+                    <div class="callout-body">
+                      <strong>{block.title}</strong>
+                      {block.body}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout>
