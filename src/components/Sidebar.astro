@@ -1,0 +1,74 @@
+---
+export interface Props {
+  links: any[];
+}
+const { links = [] } = Astro.props;
+---
+
+<aside class="doc-sidebar">
+  {links.map(section => (
+    <div class="sidebar-section">
+      {section.title ? (
+        <details class="sidebar-details" open>
+          <summary class="sidebar-section-title">{section.title}</summary>
+          <nav class="sidebar-list">
+            {section.items.map(item => (
+              <a href={item.href} class:list={['sidebar-link', { active: Astro.url.pathname === item.href || Astro.url.hash === item.href }]}>
+                {item.label}
+              </a>
+            ))}
+          </nav>
+        </details>
+      ) : (
+        <nav class="sidebar-list">
+          {section.items.map(item => (
+            <a href={item.href} class:list={['sidebar-link', { active: Astro.url.pathname === item.href || Astro.url.hash === item.href }]}>
+              {item.label}
+            </a>
+          ))}
+        </nav>
+      )}
+    </div>
+  ))}
+</aside>
+
+<style>
+  .doc-sidebar { width: 240px; }
+  .sidebar-section { margin-bottom: 14px; }
+  .sidebar-section-title {
+    font-weight: 700;
+    font-size: .95rem;
+    margin-bottom: 8px;
+    color: var(--color-text);
+    cursor: pointer;
+  }
+  .sidebar-list { display: flex; flex-direction: column; gap: 6px; margin-top:8px; }
+  .sidebar-link {
+    padding: 8px 10px;
+    border-radius: 8px;
+    color: var(--color-text-muted);
+    font-weight: 600;
+    font-size: .95rem;
+  }
+  .sidebar-link:hover { background: var(--color-primary-light); color: var(--color-primary-dark); }
+  .sidebar-link.active { background: var(--color-primary); color: white; }
+
+  /* Mobile: hidden by default, shown when root has .sidebar-open */
+  @media (max-width: 900px) {
+    .doc-sidebar { display: none; }
+    html.sidebar-open .doc-sidebar {
+      display: block;
+      position: fixed;
+      left: 0;
+      top: 64px;
+      bottom: 0;
+      width: 280px;
+      background: var(--color-surface);
+      padding: 16px;
+      box-shadow: var(--shadow-lg);
+      overflow: auto;
+      z-index: 300;
+    }
+    html.sidebar-open body { overflow: hidden; }
+  }
+</style>

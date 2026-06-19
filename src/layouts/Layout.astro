@@ -2,6 +2,7 @@
 export interface Props {
   title: string;
   description?: string;
+  sidebarLinks?: any[];
 }
 const { title, description = "Prépare ton Brevet avec des cours, fiches et méthodes." } = Astro.props;
 const pathname = Astro.url.pathname;
@@ -14,6 +15,23 @@ const navLinks = [
   { href: "/sciences", label: "Sciences" },
   { href: "/methodologie", label: "Méthodologie" },
 ];
+
+import Sidebar from "../components/Sidebar.astro";
+
+const defaultSidebarLinks = [
+  { title: null, items: [ { href: '/', label: 'Accueil' } ] },
+  { title: 'Sujets', items: [
+    { href: '/mathematiques', label: 'Mathématiques' },
+    { href: '/francais', label: 'Français' },
+    { href: '/histoire-geo', label: 'Histoire-Géo' },
+    { href: '/sciences', label: 'Sciences' },
+    { href: '/methodologie', label: 'Méthodologie' }
+  ] }
+];
+
+const passedSidebarLinks = Astro.props.sidebarLinks;
+const sidebarLinks = passedSidebarLinks ?? defaultSidebarLinks;
+const hasSidebar = Boolean(passedSidebarLinks);
 ---
 
 <!doctype html>
@@ -34,6 +52,9 @@ const navLinks = [
         <a href="/" class="logo">
           <span>BrevDoc</span>
         </a>
+        <button id="sidebarToggle" class="sidebar-toggle" aria-label="Afficher la navigation">
+          ☰
+        </button>
         <button class="nav-toggle" aria-label="Menu" id="navToggle">
           <span></span><span></span><span></span>
         </button>
@@ -51,7 +72,16 @@ const navLinks = [
     </header>
 
     <main>
-      <slot />
+      <div class:list={["page-container", { "page-layout": hasSidebar }] }>
+        {hasSidebar ? (
+          <div class="sidebar-wrapper">
+            <Sidebar links={sidebarLinks} />
+          </div>
+        ) : null}
+        <div class="content">
+          <slot />
+        </div>
+      </div>
     </main>
 
     <footer class="site-footer">
@@ -67,6 +97,21 @@ const navLinks = [
       toggle?.addEventListener('click', () => {
         nav?.classList.toggle('open');
         toggle.classList.toggle('open');
+      });
+      const sidebarToggle = document.getElementById('sidebarToggle');
+      sidebarToggle?.addEventListener('click', () => {
+        document.documentElement.classList.toggle('sidebar-open');
+      });
+
+      // Close sidebar when clicking a link on mobile
+      document.addEventListener('click', (e) => {
+        const target = e.target;
+        if (document.documentElement.classList.contains('sidebar-open') && target instanceof HTMLAnchorElement) {
+          // if link is inside sidebar, close
+          if (target.closest('.doc-sidebar')) {
+            document.documentElement.classList.remove('sidebar-open');
+          }
+        }
       });
     </script>
   </body>
@@ -217,6 +262,14 @@ const navLinks = [
     padding: 8px;
     margin-left: auto;
   }
+  .sidebar-toggle {
+    display: none;
+    margin-left: 8px;
+    background: none;
+    border: none;
+    font-size: 1.05rem;
+    cursor: pointer;
+  }
   .nav-toggle span {
     display: block;
     width: 22px;
@@ -254,6 +307,26 @@ const navLinks = [
     padding: 48px 24px;
   }
 
+  /* Layout with left sidebar */
+  .page-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  .sidebar-wrapper { position: sticky; top: 86px; align-self: start; }
+  .content { min-height: 60vh; }
+
+  /* On small screens, collapse to single column so content takes full width
+     unless the sidebar is explicitly opened via `html.sidebar-open`. */
+  @media (max-width: 900px) {
+    .page-layout { grid-template-columns: 1fr; }
+    html.sidebar-open .page-container.page-layout { grid-template-columns: 280px 1fr; }
+    html.sidebar-open .sidebar-wrapper { display: block; }
+    /* Ensure sidebar wrapper doesn't reserve space when closed */
+    .sidebar-wrapper { display: none; }
+  }
+
   /* ---- Hero ---- */
   /*.hero {
     color: white;
@@ -266,7 +339,8 @@ const navLinks = [
   }*/
   .hero {
     color: white;
-    padding: 300px 140px;
+    /* Réduit le padding sur desktop pour remonter le texte d'accueil */
+    padding: 140px 80px;
     text-align: center;
     background-color: var(--color-primary) transparent;
   }
@@ -287,12 +361,14 @@ const navLinks = [
     font-size: clamp(2rem, 5vw, 3.2rem);
     font-weight: 800;
     margin-bottom: 16px;
+    color: var(--color-text);
   }
   .hero p {
     font-size: 1.1rem;
     line-height: 1.7;
     opacity: .88;
     margin-bottom: 32px;
+    color: var(--color-text);
   }
   .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
   .btn {
@@ -309,7 +385,7 @@ const navLinks = [
   }
   .btn:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(0,0,0,.2); }
   .btn-primary { background: white; color: var(--color-primary); }
-  .btn-outline { background: transparent; color: white; border: 2px solid rgba(255, 255, 255, 0.6); }
+  .btn-outline { background: transparent; color: var(--color-text); border: 2px solid rgba(255, 255, 255, 0.6); }
   .btn-outline:hover { background: rgba(255, 255, 255, 0.6); color: var(--color-secondary-light); }
 
   /* ---- Section title ---- */
@@ -535,6 +611,7 @@ const navLinks = [
   /* ---- Responsive ---- */
   @media (max-width: 768px) {
     .nav-toggle { display: flex; }
+    .sidebar-toggle { display: block; }
     .main-nav {
       display: none;
       position: absolute;
@@ -547,6 +624,8 @@ const navLinks = [
       padding: 12px 16px;
       gap: 4px;
       box-shadow: var(--shadow-md);
+      z-index: 100;
+      border-radius: var(--radius);
     }
     .main-nav.open { display: flex; }
     .nav-link { padding: 10px 14px; width: 100%; }

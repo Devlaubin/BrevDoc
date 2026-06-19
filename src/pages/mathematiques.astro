@@ -128,19 +128,18 @@ const chapters = [
     ],
   },
 ];
+
+const slug = s => s.normalize('NFD').replace(/\p{Diacritic}/gu, '').replace(/[^\w\s-]/g, '').trim().replace(/\s+/g, '-').toLowerCase();
+
+const mathSidebarLinks = [ { title: 'Mathématiques', items: chapters.map(ch => ({ href: `#${slug(ch.title)}`, label: ch.title })) } ];
 ---
 
-<Layout title="Mathématiques">
+  <Layout title="Mathématiques" sidebarLinks={mathSidebarLinks}>
   <div class="subject-hero" style="background: linear-gradient(135deg, #ede9fe, #f5f3ff);">
     <div class="subject-hero-inner">
       <div>
         <h1 style="color:var(--color-math);">Mathématiques</h1>
         <p>Révise les chapitres essentiels : calcul, géométrie, fonctions, probabilités et équations. Formules, méthodes et points clés pour l'examen.</p>
-        <div class="tags" style="margin-top:12px;">
-          {["Calcul","Géométrie","Fonctions","Probabilités","Équations"].map(t => (
-            <span class="tag" style="background:var(--color-math-light);color:var(--color-math);">{t}</span>
-          ))}
-        </div>
       </div>
     </div>
   </div>
@@ -156,7 +155,7 @@ const chapters = [
 
     <div class="chapters">
       {chapters.map(ch => (
-        <div class="chapter-card">
+        <div class="chapter-card" id={slug(ch.title)}>
           <div class="chapter-header">
             <div class="chapter-num" style="background:var(--color-math-light);color:var(--color-math);">{ch.num}</div>
             <div class="chapter-title">{ch.title}</div>

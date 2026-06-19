@@ -140,19 +140,20 @@ const steps = [
     ],
   },
 ];
+
+const slug = s => s.normalize('NFD').replace(/\p{Diacritic}/gu, '').replace(/[^\w\s-]/g, '').trim().replace(/\s+/g, '-').toLowerCase();
+
+const methSidebarLinks = [
+  { title: 'Méthodologie', items: steps.map(s => ({ href: `#${slug(s.title)}`, label: s.title })) }
+];
 ---
 
-<Layout title="Méthodologie">
+<Layout title="Méthodologie" sidebarLinks={methSidebarLinks}>
   <div class="subject-hero" style="background: linear-gradient(135deg, #fce7f3, #fdf4ff);">
     <div class="subject-hero-inner">
       <div>
         <h1 style="color:var(--color-meth);">Méthodologie</h1>
         <p>Organisation, mémorisation, gestion du stress et conseils pour le jour J. Tout ce qu'il faut savoir pour aborder le brevet dans les meilleures conditions.</p>
-        <div class="tags" style="margin-top:12px;">
-          {["Planning","Fiches","Mémorisation","Oral","Jour J"].map(t => (
-            <span class="tag" style="background:var(--color-meth-light);color:var(--color-meth);">{t}</span>
-          ))}
-        </div>
       </div>
     </div>
   </div>
@@ -168,7 +169,7 @@ const steps = [
 
     <div class="chapters">
       {steps.map(step => (
-        <div class="chapter-card">
+        <div class="chapter-card" id={slug(step.title)}>
           <div class="chapter-header">
             <div class="chapter-num" style={`background:${step.bg};color:${step.color};`}><Icon name={step.icon} size={18} /></div>
             <div class="chapter-title">{step.title}</div>

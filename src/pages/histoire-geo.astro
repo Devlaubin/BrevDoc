@@ -117,19 +117,20 @@ const chapters = [
     ],
   },
 ];
+
+const slug = s => s.normalize('NFD').replace(/\p{Diacritic}/gu, '').replace(/[^\w\s-]/g, '').trim().replace(/\s+/g, '-').toLowerCase();
+
+const hgSidebarLinks = [
+  { title: 'Histoire-Géo', items: chapters.map(ch => ({ href: `#${slug(ch.title)}`, label: ch.title })) }
+];
 ---
 
-<Layout title="Histoire-Géographie">
+<Layout title="Histoire-Géographie" sidebarLinks={hgSidebarLinks}>
   <div class="subject-hero" style="background: linear-gradient(135deg, #dcfce7, #f0fdf4);">
     <div class="subject-hero-inner">
       <div>
         <h1 style="color:var(--color-hg);">Histoire-Géographie & EMC</h1>
         <p>Repères chronologiques, notions géographiques clés, institutions républicaines. Cours structurés pour maîtriser tout le programme de 3e.</p>
-        <div class="tags" style="margin-top:12px;">
-          {["XXe siècle","Guerres mondiales","UE","Mondialisation","EMC"].map(t => (
-            <span class="tag" style="background:var(--color-hg-light);color:var(--color-hg);">{t}</span>
-          ))}
-        </div>
       </div>
     </div>
   </div>
@@ -145,7 +146,7 @@ const chapters = [
 
     <div class="chapters">
       {chapters.map(ch => (
-        <div class="chapter-card">
+        <div class="chapter-card" id={slug(ch.title)}>
           <div class="chapter-header">
             <div class="chapter-num" style="background:var(--color-hg-light);color:var(--color-hg);">{ch.num}</div>
             <div class="chapter-title">{ch.title}</div>
