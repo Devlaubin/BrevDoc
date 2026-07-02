@@ -61,6 +61,10 @@ npm run preview
 
 Le projet contient un script pour récupérer/mettre à jour des ressources depuis une source externe.
 
+## Screenshot
+
+![Screenshot](BrevDocImage.png)
+
 ### Exécuter le script
 
 ```bash
