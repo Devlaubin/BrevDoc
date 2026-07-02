@@ -419,7 +419,7 @@ const hasSidebar = Boolean(passedSidebarLinks);
     box-shadow: var(--shadow-sm);
     cursor: pointer;
   }
-  .subject-card:hover { border-color: 2px solid var(--color-primary);transform: scale(0.95)}
+  .subject-card:hover { border: 2px solid var(--color-primary); transform: scale(0.95); }
 
   .card-icon {
     width: 48px;
@@ -637,5 +637,16 @@ const hasSidebar = Boolean(passedSidebarLinks);
     .chapter-body { padding: 20px; }
     .hero { padding: 56px 20px; }
     .stats-row { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* Mobile: give containers more horizontal space */
+  @media (max-width: 900px) {
+    .page-container { padding: 20px 10px; max-width: 100%; }
+    .content { padding: 0; }
+    .chapter-header { padding: 14px 16px; }
+    .chapter-body { padding: 16px 12px; }
+    .cards-grid { gap: 12px; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+    .subject-card { padding: 18px; }
+    .notion-block h3 { font-size: .98rem; }
   }
 </style>

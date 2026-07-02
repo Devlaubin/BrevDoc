@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
+import YouTubeEmbed from '../components/YouTubeEmbed.astro';
 
 const steps = [
   {
@@ -146,6 +147,11 @@ const slug = s => s.normalize('NFD').replace(/\p{Diacritic}/gu, '').replace(/[^\
 const methSidebarLinks = [
   { title: 'Méthodologie', items: steps.map(s => ({ href: `#${slug(s.title)}`, label: s.title })) }
 ];
+const videos = [
+  { id: 'VIDEO_ID_1', title: 'Organiser ses révisions — méthode', caption: 'Planification et conseils pratiques.' },
+  { id: 'VIDEO_ID_2', title: 'Techniques de mémorisation', caption: 'Pomodoro, répétition espacée et Feynman.' },
+  { id: 'VIDEO_ID_3', title: 'Gérer le stress à l’oral', caption: 'Exercices et astuces pour rester calme.' },
+];
 ---
 
 <Layout title="Méthodologie" sidebarLinks={methSidebarLinks}>
@@ -166,6 +172,18 @@ const methSidebarLinks = [
         Il n'y a pas de raccourci : la régularité bat l'intensité. 30 min de révision par jour pendant 2 mois valent mieux que 10h de bourrage le week-end avant l'examen.
       </div>
     </div>
+
+    <section class="videos-section" style="margin:28px 0;">
+      <h2 class="section-title">Vidéos explicatives</h2>
+      <p class="section-subtitle">Des vidéos sélectionnées pour consolider les notions clés.</p>
+      <div class="cards-grid">
+        {videos.map(v => (
+          <div class="subject-card">
+            <YouTubeEmbed id={v.id} title={v.title} caption={v.caption} />
+          </div>
+        ))}
+      </div>
+    </section>
 
     <div class="chapters">
       {steps.map(step => (

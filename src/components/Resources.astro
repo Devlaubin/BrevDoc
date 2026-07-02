@@ -1,0 +1,30 @@
+---
+export interface Props { resources?: any[] }
+const resources = Astro.props.resources ?? [];
+---
+
+<section class="resources">
+  <h2 class="section-title">Fiches et ressources</h2>
+  <p class="section-subtitle">Téléchargez des fiches et accédez à des quiz externes.</p>
+  <div class="resource-list">
+    {resources.length === 0 ? (
+      <p>Aucune ressource trouvée. Lancez le script de scraping pour générer une liste.</p>
+    ) : (
+      resources.map(r => (
+        <div class="resource-card">
+          <div class="resource-title">{r.title}</div>
+          <a class="resource-link" href={r.url} target="_blank" rel="noopener noreferrer">Ouvrir</a>
+          {r.type === 'pdf' ? <a class="resource-download" href={r.url} download>Télécharger</a> : null}
+        </div>
+      ))
+    )}
+  </div>
+</section>
+
+<style>
+.resources { margin: 24px 0; }
+.resource-list { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.resource-card { background: var(--color-surface); border: 1px solid var(--color-border); padding: 12px; border-radius: 8px; display:flex; flex-direction:column; gap:8px; }
+.resource-title { font-weight:700; }
+.resource-link, .resource-download { color: var(--color-primary); font-weight:600; text-decoration:none; }
+</style>

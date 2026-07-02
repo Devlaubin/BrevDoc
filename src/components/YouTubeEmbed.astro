@@ -1,0 +1,32 @@
+---
+export interface Props {
+  id: string;
+  title?: string;
+  caption?: string;
+}
+const { id, title = '', caption = '' } = Astro.props;
+---
+
+<div class="youtube-embed">
+  {title ? <div class="embed-title">{title}</div> : null}
+  <div class="embed-frame">
+    <iframe
+      width="560"
+      height="315"
+      src={`https://www.youtube.com/embed/${id}`}
+      title={title || 'YouTube video player'}
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  </div>
+  {caption ? <div class="embed-caption">{caption}</div> : null}
+</div>
+
+<style>
+  .youtube-embed { margin: 18px 0; }
+  .embed-title { font-weight: 700; margin-bottom: 8px; }
+  .embed-frame { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; }
+  .embed-frame iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+  .embed-caption { font-size: .9rem; color: var(--color-text-muted); margin-top: 8px; }
+</style>

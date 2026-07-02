@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
+import YouTubeEmbed from '../components/YouTubeEmbed.astro';
 
 const chapters = [
   {
@@ -123,6 +124,11 @@ const slug = s => s.normalize('NFD').replace(/\p{Diacritic}/gu, '').replace(/[^\
 const hgSidebarLinks = [
   { title: 'Histoire-Géo', items: chapters.map(ch => ({ href: `#${slug(ch.title)}`, label: ch.title })) }
 ];
+const videos = [
+  { id: 'VIDEO_ID_1', title: 'Première Guerre mondiale — synthèse', caption: 'Causes, phases et conséquences principales.' },
+  { id: 'VIDEO_ID_2', title: 'Guerre froide et construction européenne', caption: 'Repères clés et acteurs.' },
+  { id: 'VIDEO_ID_3', title: 'Croquis et schémas — méthode', caption: 'Comment réaliser un croquis clair et légendé.' },
+];
 ---
 
 <Layout title="Histoire-Géographie" sidebarLinks={hgSidebarLinks}>
@@ -143,6 +149,18 @@ const hgSidebarLinks = [
         L'épreuve dure <strong>2h</strong>. Elle comporte : des questions, une analyse de documents (histoire ou géo) et un exercice de raisonnement géographique ou de réflexion citoyenne.
       </div>
     </div>
+
+    <section class="videos-section" style="margin:28px 0;">
+      <h2 class="section-title">Vidéos explicatives</h2>
+      <p class="section-subtitle">Des vidéos sélectionnées pour consolider les notions clés.</p>
+      <div class="cards-grid">
+        {videos.map(v => (
+          <div class="subject-card">
+            <YouTubeEmbed id={v.id} title={v.title} caption={v.caption} />
+          </div>
+        ))}
+      </div>
+    </section>
 
     <div class="chapters">
       {chapters.map(ch => (

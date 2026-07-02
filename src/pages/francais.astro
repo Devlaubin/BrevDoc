@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
+import YouTubeEmbed from '../components/YouTubeEmbed.astro';
 
 const chapters = [
   {
@@ -128,6 +129,11 @@ const slug = s => s.normalize('NFD').replace(/\p{Diacritic}/gu, '').replace(/[^\
 const francaisSidebarLinks = [
   { title: 'Français', items: chapters.map(ch => ({ href: `#${slug(ch.title)}`, label: ch.title })) }
 ];
+const videos = [
+  { id: 'VIDEO_ID_1', title: 'Orthographe et accords — explications', caption: 'Rappels et astuces pour maîtriser les accords.' },
+  { id: 'VIDEO_ID_2', title: 'Lecture analytique — méthode', caption: 'Comment aborder un texte et répondre aux questions.' },
+  { id: 'VIDEO_ID_3', title: 'Rédaction — structurer un texte', caption: 'Plan type et exemples pour la rédaction.' },
+];
 ---
 
 <Layout title="Français" sidebarLinks={francaisSidebarLinks}>
@@ -149,6 +155,18 @@ const francaisSidebarLinks = [
         L'épreuve de français dure <strong>3h</strong>. Elle comprend : questions sur texte(s), réécriture, dictée et rédaction. Lis toutes les consignes avant de commencer.
       </div>
     </div>
+
+    <section class="videos-section" style="margin:28px 0;">
+      <h2 class="section-title">Vidéos explicatives</h2>
+      <p class="section-subtitle">Des vidéos sélectionnées pour consolider les notions clés.</p>
+      <div class="cards-grid">
+        {videos.map(v => (
+          <div class="subject-card">
+            <YouTubeEmbed id={v.id} title={v.title} caption={v.caption} />
+          </div>
+        ))}
+      </div>
+    </section>
 
     <div class="chapters">
       {chapters.map(ch => (

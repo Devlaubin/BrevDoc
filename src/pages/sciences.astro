@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
+import YouTubeEmbed from '../components/YouTubeEmbed.astro';
 
 const chapters = [
   {
@@ -119,6 +120,11 @@ const slug = s => s.normalize('NFD').replace(/\p{Diacritic}/gu, '').replace(/[^\
 const sciSidebarLinks = [
   { title: 'Sciences', items: chapters.map(ch => ({ href: `#${slug(ch.title)}`, label: ch.title })) }
 ];
+const videos = [
+  { id: 'VIDEO_ID_1', title: 'Cellule et ADN — résumé', caption: 'Structure de la cellule et rôle de l’ADN.' },
+  { id: 'VIDEO_ID_2', title: 'Lois de la mécanique — exercices', caption: 'Forces, lois de Newton et résolutions.' },
+  { id: 'VIDEO_ID_3', title: 'Électricité — notions clés', caption: 'Loi d’Ohm et circuits simples.' },
+];
 ---
 
 <Layout title="Sciences" sidebarLinks={sciSidebarLinks}>
@@ -139,6 +145,18 @@ const sciSidebarLinks = [
         L'épreuve de sciences dure <strong>1h</strong>. Elle comporte des exercices de SVT et de Physique-Chimie. La calculatrice est autorisée pour la partie physique.
       </div>
     </div>
+
+    <section class="videos-section" style="margin:28px 0;">
+      <h2 class="section-title">Vidéos explicatives</h2>
+      <p class="section-subtitle">Des vidéos sélectionnées pour consolider les notions clés.</p>
+      <div class="cards-grid">
+        {videos.map(v => (
+          <div class="subject-card">
+            <YouTubeEmbed id={v.id} title={v.title} caption={v.caption} />
+          </div>
+        ))}
+      </div>
+    </section>
 
     <div class="chapters">
       {chapters.map(ch => (
